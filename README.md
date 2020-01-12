@@ -31,6 +31,4 @@ This deploys the app to local network `http://localhost:8080/`. You may have to 
 
 ## Making Requests
 
-The easiest way to make a POST request is to go to `http://localhost:8080/docs` and uploading an image from there.
-
-TODO: add pictures here to show how it's done
+The easiest way to make a POST request is to go to `http://localhost:8080/docs` and uploading an image from the `/pneumonia/predict`.
