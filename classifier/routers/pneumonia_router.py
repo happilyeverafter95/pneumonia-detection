@@ -1,11 +1,9 @@
 import io
-import numpy as np
 import tensorflow as tf
 
 from fastapi import APIRouter, File
 from PIL import Image
 from keras.preprocessing.image import img_to_array
-from keras.applications import imagenet_utils
 
 from classifier.train import Train
 
@@ -13,20 +11,18 @@ router = APIRouter()
 
 
 @router.post('/predict')
-def skin_lesion_classification(image_file: bytes = File(...)):
+def pnuemonia_router(image_file: bytes = File(...)):
     model = Train().define_model()
     model.load_weights('classifier/models/weights.h5')
 
     image = Image.open(io.BytesIO(image_file))
 
-    if image.mode != 'LA':
-        image = image.convert('LA')
+    if image.mode != 'L':
+        image = image.convert('L')
 
     image = image.resize((64, 64))
-
-    image = img_to_array(image)
-    image = np.expand_dims(image, axis=0)
-    image = imagenet_utils.preprocess_input(image)
+    image = img_to_array(image)/255.0
+    image = image.reshape(1, 64, 64, 1)
 
     graph = tf.get_default_graph()
 
@@ -35,5 +31,5 @@ def skin_lesion_classification(image_file: bytes = File(...)):
 
     predicted_class = 'pneumonia' if predicted_class[0] > 0.5 else 'normal'
 
-    return {'predicted_class': predicted_class, 
+    return {'predicted_class': predicted_class,
             'pneumonia_probability': str(predicted_class[0])}
