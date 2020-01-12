@@ -46,10 +46,11 @@ class Train:
         logger.info('{} images in training set; {} are PNEUMONIA'.format(self.train.samples, sum(self.train.labels)))
 
     def download_data(self):
-        kaggle.api.authenticate()
-        kaggle.api.dataset_download_files(self.dataset_name, path=self.data_path)
-        with zipfile.ZipFile(os.path.join(self.data_path, 'chest-xray-pneumonia.zip')) as z:
-            z.extractall(self.data_path)
+        if not os.path.isdir(self.data_path):
+            kaggle.api.authenticate()
+            kaggle.api.dataset_download_files(self.dataset_name, path=self.data_path)
+            with zipfile.ZipFile(os.path.join(self.data_path, 'chest-xray-pneumonia.zip')) as z:
+                z.extractall(self.data_path)
 
     def define_model(self):
         model = Sequential()
@@ -85,4 +86,4 @@ class Train:
 
 if __name__ == '__main__':
     train_model = Train()
-    train.deploy_model()
+    train_model.deploy_model()

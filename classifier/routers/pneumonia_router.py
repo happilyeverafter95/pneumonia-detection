@@ -15,7 +15,7 @@ router = APIRouter()
 @router.post('/predict')
 def skin_lesion_classification(image_file: bytes = File(...)):
     model = Train().define_model()
-    model.load_weights('classifier/data/models/weights.h5')
+    model.load_weights('classifier/data/weights.h5')
 
     image = Image.open(io.BytesIO(image_file))
 
