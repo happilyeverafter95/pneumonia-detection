@@ -27,9 +27,9 @@ def pnuemonia_router(image_file: bytes = File(...)):
     graph = tf.get_default_graph()
 
     with graph.as_default():
-        predicted_class = model.predict_proba(image)
+        prediction = model.predict_proba(image)
 
-    predicted_class = 'pneumonia' if predicted_class[0] > 0.5 else 'normal'
+    predicted_class = 'pneumonia' if prediction[0] > 0.5 else 'normal'
 
     return {'predicted_class': predicted_class,
-            'pneumonia_probability': str(predicted_class[0])}
+            'pneumonia_probability': str(prediction[0])}

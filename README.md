@@ -2,7 +2,7 @@
 
 I am using the [Chest X-Ray Images (Pneumonia)](https://www.kaggle.com/paultimothymooney/chest-xray-pneumonia) dataset from Kaggle to train a simple CNN for pneumonia detection. The dataset splits pneumonia into two categories: viral and bacterial. The model does not differentiate between these two categories.
 
-![Image from the dataset](fixtures/pneumonia.jpeg)
+![Image from the dataset](fixtures/pneumonia_1.jpeg)
 
 ## Model Deployment
 
