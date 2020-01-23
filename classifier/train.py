@@ -21,7 +21,7 @@ class Train:
         self.val: ImageDataGenerator
         self.train: ImageDataGenerator
         self.test: ImageDataGenerator
-        self.epochs = 10
+        self.epochs = 5
 
     def load_data(self):
         self.download_data()
