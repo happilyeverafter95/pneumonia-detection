@@ -3,4 +3,4 @@ kaggle==1.5.6
 keras==2.3.1
 Pillow==6.2.0
 tensorflow==1.15.0
-uvicorn==0.10.8
+uvicorn==0.11.7
