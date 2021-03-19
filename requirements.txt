@@ -1,6 +1,6 @@
 fastapi[all]==0.39.0
 kaggle==1.5.6
 keras==2.3.1
-Pillow==6.2.0
+Pillow==8.1.1
 tensorflow==1.15.0
 uvicorn==0.10.8
